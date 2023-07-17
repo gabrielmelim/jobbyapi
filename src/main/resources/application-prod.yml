@@ -4,12 +4,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://containers-us-west-30.railway.app:7942/railway?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://containers-us-west-55.railway.app:6056/railway?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: GhyrQne7UwxsRq82I4ZA
+    password: Z7WkJZD9ld1HFmEa7vQn
     type: com.zaxxer.hikari.HikariDataSource
   jpa:
     hibernate:
       ddl-auto: update
-    jpa:
-      show-sql: true
+    show-sql: true
