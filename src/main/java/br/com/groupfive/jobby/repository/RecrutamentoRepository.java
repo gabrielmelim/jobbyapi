@@ -5,7 +5,6 @@ import br.com.groupfive.jobby.model.Profissao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -15,7 +14,17 @@ import java.util.List;
 public interface RecrutamentoRepository extends JpaRepository<Cadastro, Integer> {
     long countByHabilidadesNotLikeIgnoreCase(String habilidades);
     long countByHabilidadesLikeIgnoreCase(String habilidades);
-    List<Cadastro> findByHabilidadesNot(String habilidade);
+
+    @Query(value = "SELECT * \n" +
+            "From jobby.tb_cadastro AS c\n" +
+            "WHERE c.id_cadastro NOT IN (\n" +
+            "\t\tSELECT cad_id\n" +
+            "\t\t\tFrom jobby.tab_cad_habilidade AS h\n" +
+            "\t\tWHERE UPPER(h.nm_habil) = :habilidade\n" +
+            ");", nativeQuery = true)
+    List<Cadastro> findByHabilidadesNotIgnoreCase(
+            @Param("habilidade") String habilidade
+    );
     List<Cadastro> findByHabilidades(String habilidade);
     List<Cadastro> findByProfissao(Profissao profissao);
 

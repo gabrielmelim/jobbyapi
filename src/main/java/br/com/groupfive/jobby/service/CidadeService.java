@@ -10,6 +10,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CidadeService implements ICidadeService<Integer> {
     @Autowired
@@ -52,5 +55,11 @@ public class CidadeService implements ICidadeService<Integer> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<CidadeDTO> findAll() {
+        List<Cidade> cidades = cidadeRepository.findAll();
+        return cidades.isEmpty() ? null : cidades.stream().map(c -> CidadeDTO.fromModel(c)).collect(Collectors.toList());
     }
 }

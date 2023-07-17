@@ -4,9 +4,13 @@ import br.com.groupfive.jobby.dto.cidade.CidadeDTO;
 import br.com.groupfive.jobby.dto.cidade.CreateCidadeDTO;
 import br.com.groupfive.jobby.dto.cidade.UpdateCidadeDTO;
 
+import java.util.List;
+
 public interface ICidadeService<T> {
     CidadeDTO findById(T id);
     CidadeDTO create(CreateCidadeDTO createCidadeDTO);
     boolean update(UpdateCidadeDTO updateCidadeDTO, T id);
     boolean deleteById(T id);
+
+    List<CidadeDTO> findAll();
 }

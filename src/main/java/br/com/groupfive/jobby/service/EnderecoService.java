@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnderecoService implements IEnderecoService<Integer> {
 
-//    @Autowired
-//    EnderecoRepository enderecoRepository;
     @Autowired
     CadastroRepository cadastroRepository;
 
@@ -29,34 +27,15 @@ public class EnderecoService implements IEnderecoService<Integer> {
         }
     }
 
-//    @Override
-//    public EnderecoDTO create(CreateEnderecoDTO createEnderecoDTO) {
-//        Endereco enderecoModel = new Endereco();
-//        BeanUtils.copyProperties(createEnderecoDTO, enderecoModel);
-//        enderecoModel.setCidade(cidadeRepository.findById(createEnderecoDTO.idCidade()).get());
-//        enderecoRepository.save(enderecoModel);
-//        return EnderecoDTO.fromModel(enderecoModel);
-//    }
-
     @Override
     public boolean update(UpdateEnderecoDTO updateEnderecoDTO, Integer id) {
         if(cadastroRepository.existsById(id)){
             Cadastro cadastro = cadastroRepository.findById(id).get();
-            BeanUtils.copyProperties(updateEnderecoDTO, cadastro);
+            BeanUtils.copyProperties(updateEnderecoDTO, cadastro.getEndereco());
             cadastroRepository.save(cadastro);
             return true;
         }else{
             return false;
         }
     }
-
-//    @Override
-//    public boolean deleteById(Integer id) {
-//        if(enderecoRepository.existsById(id)){
-//            enderecoRepository.deleteById(id);
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
 }

@@ -40,7 +40,7 @@ public class RecrutamentoService implements IRecrutamentoService<Integer> {
 
     @Override
     public List<CadastroDTO> findByHabilidadeNot(String habilidade) {
-        List<Cadastro> cadastros = recrutamentoRepository.findByHabilidadesNot(habilidade.toUpperCase());
+        List<Cadastro> cadastros = recrutamentoRepository.findByHabilidadesNotIgnoreCase(habilidade.toUpperCase());
         return cadastros.isEmpty() ? null : cadastros.stream().map(c -> CadastroDTO.fromModel(c)).collect(Collectors.toList());
     }
 
