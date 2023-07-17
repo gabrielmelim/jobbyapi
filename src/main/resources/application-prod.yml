@@ -1,0 +1,15 @@
+# =================================
+# = Datasource
+# =================================
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://containers-us-west-30.railway.app:7942/railway?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: GhyrQne7UwxsRq82I4ZA
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    hibernate:
+      ddl-auto: update
+    jpa:
+      show-sql: true
